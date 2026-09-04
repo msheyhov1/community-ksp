@@ -844,18 +844,23 @@ input { font-family: inherit; }
   .topbar__right { display: none; }
   .topbar__inner { justify-content: center; min-height: 32px; }
 
-  .header__inner { gap: 16px; min-height: 64px; }
-  .logo__name { font-size: 19px; }
-  .logo__tag { font-size: 10px; }
+  .header__inner { gap: 12px; min-height: 60px; }
+  .logo img { width: 132px; }
   .nav__list a { padding: 13px 14px; font-size: 14px; }
   .search, .header__links { display: none; }
   .burger { display: inline-flex; }
-  .header__icons { border-left: none; padding-left: 0; margin-left: auto; }
+  .header__icons { border-left: none; padding-left: 0; margin-left: auto; gap: 14px; }
+  .header__icons .ico { width: 21px; height: 21px; }
+  .header__badge { top: -5px; right: -7px; min-width: 15px; height: 15px; font-size: 9.5px; }
+  .burger .ico { width: 24px; height: 24px; }
 
   .hero__inner { flex-direction: column; min-height: 0; }
   .hero__content { padding: 32px 0 16px; text-align: left; width: 100%; }
-  .hero__title { font-size: 30px; }
-  .hero__subtitle { font-size: 16px; }
+  .hero__title { font-size: 28px; }
+  .hero__subtitle { font-size: 15px; }
+  .hero__btn { min-width: 0; margin-top: 22px; padding: 13px 24px; font-size: 16px; }
+  .hero__content { margin-bottom: 0; }
+  .hero__dots { bottom: 12px; }
   .hero__media { width: 100%; padding-bottom: 40px; }
 
   .section { padding: 32px 0; }
@@ -2227,54 +2232,175 @@ textarea:focus-visible,
 .product--single .product__photo { min-height: 460px; }
 .product--single .product__photo img { max-height: 460px; }
 
-/* ================= Плавное масштабирование под ширину экрана =================
-   Макет нарисован под контент 1440 px. На экранах от 1440 и шире сайт выглядит
-   ровно как в макете; на окнах уже (ноутбуки, половина экрана, 1000–1400 px)
-   шапка и карточки плавно уменьшаются, а не остаются гигантскими.
-   Формула множителя: макетный размер / 1440. */
+/* ================= Масштаб интерфейса ==================================
+   Макет нарисован в кадре 1920 (контент 1440). Чтобы на экранах поменьше
+   сайт выглядел так же, как макет, весь интерфейс масштабируется
+   пропорционально ширине окна.
+
+   --u — «макетный пиксель»: при 1920 равен 1px, при 1400 — 0.73px и т.д.
+   Размер из макета записывается как calc(<число из макета> * var(--u)).
+   Шрифты дополнительно защищены минимумом, чтобы не стать нечитаемыми. */
+
+:root { --u: clamp(0.58px, 0.05208vw, 1px); }
 
 @media (min-width: 769px) {
+  /* Базовая кнопка — объявляем первой, чтобы частные (в карточке, в герое)
+     перекрывали её, а не наоборот */
+  .btn { padding: calc(13 * var(--u)) calc(26 * var(--u)); font-size: max(13px, calc(18 * var(--u))); border-radius: calc(8 * var(--u)); }
+
   /* Верхняя полоса */
-  .topbar { font-size: clamp(10.5px, 0.868vw, 12.5px); }
-  .topbar__inner { min-height: clamp(32px, 2.917vw, 42px); }
-  .topbar__right { gap: clamp(10px, 1.667vw, 24px); }
-  .topbar__item .ico { width: clamp(11px, 0.903vw, 13px); height: clamp(11px, 0.903vw, 13px); }
+  .topbar { font-size: max(11px, calc(12.5 * var(--u))); }
+  .topbar__inner { min-height: max(30px, calc(42 * var(--u))); gap: calc(16 * var(--u)); }
+  .topbar__right { gap: calc(24 * var(--u)); }
+  .topbar__item .ico { width: calc(13 * var(--u)); height: calc(13 * var(--u)); }
 
   /* Шапка */
-  .header__inner { min-height: clamp(74px, 8.125vw, 117px); gap: clamp(14px, 2.222vw, 32px); }
-  .logo img { width: clamp(116px, 12.222vw, 176px); }
-  .search { padding: 0 clamp(10px, 1.111vw, 16px); }
-  .search input { height: clamp(40px, 3.611vw, 52px); font-size: clamp(13px, 1.042vw, 15px); }
-  .search .ico { width: clamp(14px, 1.181vw, 17px); height: clamp(14px, 1.181vw, 17px); }
-  .header__links { font-size: clamp(13px, 1.111vw, 16px); gap: clamp(13px, 1.944vw, 28px); }
-  .header__icons { gap: clamp(10px, 1.25vw, 18px); padding-left: clamp(10px, 1.389vw, 20px); }
-  .header__icons .ico { width: clamp(18px, 1.528vw, 22px); height: clamp(18px, 1.528vw, 22px); }
+  .header__inner { min-height: max(64px, calc(117 * var(--u))); gap: calc(32 * var(--u)); }
+  .logo img { width: max(112px, calc(176 * var(--u))); }
+  .search { padding: 0 calc(16 * var(--u)); border-radius: calc(8 * var(--u)); }
+  .search input { height: max(38px, calc(52 * var(--u))); font-size: max(12.5px, calc(15 * var(--u))); }
+  .search .ico { width: calc(17 * var(--u)); height: calc(17 * var(--u)); }
+  .header__links { font-size: max(13px, calc(16 * var(--u))); gap: calc(28 * var(--u)); }
+  .header__icons { gap: calc(18 * var(--u)); padding-left: calc(20 * var(--u)); }
+  .header__icons .ico { width: max(17px, calc(22 * var(--u))); height: max(17px, calc(22 * var(--u))); }
 
   /* Меню разделов */
-  .nav__list a { padding: clamp(14px, 1.806vw, 26px) clamp(7px, 1.25vw, 18px); font-size: clamp(13.5px, 1.319vw, 19px); }
+  .nav__list a { padding: calc(26 * var(--u)) calc(18 * var(--u)); font-size: max(13px, calc(19 * var(--u))); }
 
-  /* Карточка товара в сетке */
-  .p-card { padding: clamp(16px, 1.667vw, 24px) clamp(10px, 1.111vw, 16px) clamp(18px, 1.944vw, 28px); }
-  .p-card__name { margin-top: clamp(14px, 1.597vw, 23px); font-size: clamp(14.5px, 1.208vw, 17.4px); min-height: clamp(40px, 3.611vw, 52px); }
-  .p-card__price { font-size: clamp(22px, 2.201vw, 31.7px); }
-  .p-card__price s { font-size: clamp(14px, 1.389vw, 20px); }
-  .p-card__installment { margin: clamp(10px, 0.972vw, 14px) 0 clamp(12px, 1.111vw, 16px); font-size: clamp(12.5px, 1.076vw, 15.5px); }
-  .p-card__installment b { font-size: clamp(12.5px, 1.076vw, 15.5px); padding: clamp(4px, 0.417vw, 6px) clamp(8px, 0.833vw, 12px); }
-  .p-card__btn { margin: auto clamp(12px, 2.292vw, 33px) 0; padding: clamp(11px, 1.111vw, 16px) 12px; font-size: clamp(15px, 1.389vw, 20px); }
-  .p-card__fav { top: clamp(10px, 0.972vw, 14px); right: clamp(8px, 0.694vw, 10px); width: clamp(40px, 3.611vw, 52px); height: clamp(40px, 3.611vw, 52px); }
-  .p-card__fav .ico { width: clamp(18px, 1.667vw, 24px); height: clamp(18px, 1.667vw, 24px); }
-  .p-card__compare { top: clamp(56px, 5.278vw, 76px); right: clamp(8px, 0.694vw, 10px); width: clamp(40px, 3.611vw, 52px); height: clamp(40px, 3.611vw, 52px); }
-  .p-card__compare .ico { width: clamp(17px, 1.528vw, 22px); height: clamp(17px, 1.528vw, 22px); }
+  /* Герой */
+  .hero__inner { min-height: calc(710 * var(--u)); }
+  .hero__title { font-size: max(30px, calc(64 * var(--u))); }
+  .hero__subtitle { font-size: max(17px, calc(40 * var(--u))); }
+  .btn.hero__btn { min-width: calc(276 * var(--u)); margin-top: calc(54 * var(--u)); padding: calc(15 * var(--u)) calc(28 * var(--u)); font-size: max(14px, calc(20 * var(--u))); }
+  .hero__content { margin-bottom: calc(70 * var(--u)); }
 
-  /* Отступы крупных блоков */
-  .section--grey { padding: clamp(48px, 6.389vw, 92px) 0; }
-  .section--news { padding-top: clamp(40px, 5.139vw, 74px); padding-bottom: clamp(36px, 4.722vw, 68px); }
-  .section--promo { padding-top: clamp(34px, 4.375vw, 63px); padding-bottom: clamp(20px, 2.431vw, 35px); }
-  .section--suggest { padding-top: clamp(34px, 4.306vw, 62px); padding-bottom: clamp(56px, 7.778vw, 112px); }
-  .about-block { padding: clamp(52px, 6.736vw, 97px) 0 clamp(60px, 7.778vw, 112px); }
-  .about-block__text { font-size: clamp(15px, 1.389vw, 20px); }
-  .adv-card { min-height: clamp(180px, 19.028vw, 274px); padding: clamp(16px, 1.667vw, 24px) clamp(14px, 1.389vw, 20px); }
-  .footer { padding-top: clamp(56px, 8.264vw, 119px); }
-  .footer__col li { margin-bottom: clamp(14px, 2.083vw, 30px); }
-  .hero__btn { min-width: clamp(180px, 19.167vw, 276px); font-size: clamp(15px, 1.389vw, 20px); }
+  /* Плитки категорий */
+  .cat-tiles { gap: calc(20 * var(--u)); }
+  .cat-tiles__col, .cat-tiles__row { gap: calc(20 * var(--u)); }
+  .cat-tile { padding: calc(16 * var(--u)) calc(28 * var(--u)) calc(28 * var(--u)); border-radius: calc(20 * var(--u)); }
+  .cat-tile__name { font-size: max(17px, calc(31 * var(--u))); }
+
+  /* Заголовки секций и отступы */
+  .section { padding: calc(64 * var(--u)) 0; }
+  .section--grey { padding: calc(92 * var(--u)) 0; }
+  .section--news { padding-top: calc(74 * var(--u)); padding-bottom: calc(68 * var(--u)); }
+  .section--promo { padding-top: calc(63 * var(--u)); padding-bottom: calc(35 * var(--u)); }
+  .section--suggest { padding-top: calc(62 * var(--u)); padding-bottom: calc(112 * var(--u)); }
+  .section__title { font-size: max(22px, calc(48 * var(--u))); }
+  .section__head { margin-bottom: calc(32 * var(--u)); }
+  .section__link { font-size: max(13px, calc(16 * var(--u))); }
+  .products { gap: calc(24 * var(--u)); }
+  .products--grid { row-gap: calc(20 * var(--u)); }
+
+  /* Карточка товара */
+  .p-card { padding: calc(24 * var(--u)) calc(16 * var(--u)) calc(28 * var(--u)); border-radius: calc(20 * var(--u)); }
+  .p-card__name { margin-top: calc(23 * var(--u)); font-size: max(13px, calc(17.4 * var(--u))); min-height: calc(52 * var(--u)); }
+  .p-card__price { font-size: max(19px, calc(31.7 * var(--u))); }
+  .p-card__price s { font-size: max(13px, calc(20 * var(--u))); }
+  .p-card__installment { margin: calc(14 * var(--u)) 0 calc(16 * var(--u)); font-size: max(11.5px, calc(15.5 * var(--u))); }
+  .p-card__installment b { font-size: max(11.5px, calc(15.5 * var(--u))); padding: calc(6 * var(--u)) calc(12 * var(--u)); }
+  .btn.p-card__btn { margin: auto calc(33 * var(--u)) 0; padding: calc(16 * var(--u)) calc(18 * var(--u)); font-size: max(13px, calc(20 * var(--u))); }
+  .p-card__fav { top: calc(14 * var(--u)); right: calc(10 * var(--u)); width: max(36px, calc(52 * var(--u))); height: max(36px, calc(52 * var(--u))); }
+  .p-card__fav .ico { width: max(16px, calc(24 * var(--u))); height: max(16px, calc(24 * var(--u))); }
+  .p-card__compare { top: max(54px, calc(76 * var(--u))); right: calc(10 * var(--u)); width: max(36px, calc(52 * var(--u))); height: max(36px, calc(52 * var(--u))); }
+  .p-card__compare .ico { width: max(15px, calc(22 * var(--u))); height: max(15px, calc(22 * var(--u))); }
+
+  /* Промо-баннер */
+  .promo { min-height: calc(590 * var(--u)); }
+  .promo__title { font-size: max(20px, calc(40 * var(--u))); }
+  .promo__text { font-size: max(13px, calc(20 * var(--u))); }
+  .promo__actions { margin-top: calc(30 * var(--u)); }
+
+  /* SEO-блок и преимущества */
+  .about-block { padding: calc(97 * var(--u)) 0 calc(112 * var(--u)); }
+  .about-block__title { font-size: max(20px, calc(45 * var(--u))); }
+  .about-block__text { margin-top: calc(24 * var(--u)); font-size: max(13.5px, calc(20 * var(--u))); }
+  .advantages { margin-top: calc(41 * var(--u)); gap: calc(24 * var(--u)); }
+  .adv-card { min-height: calc(274 * var(--u)); padding: calc(24 * var(--u)) calc(20 * var(--u)); border-radius: calc(12 * var(--u)); }
+  .adv-card .ico { width: calc(34 * var(--u)); height: calc(34 * var(--u)); }
+  .adv-card__name { margin-top: calc(14 * var(--u)); font-size: max(13px, calc(17 * var(--u))); }
+  .adv-card__text { font-size: max(11px, calc(12.5 * var(--u))); }
+
+  /* Подвал */
+  .footer { padding-top: calc(119 * var(--u)); font-size: max(13px, calc(16 * var(--u))); }
+  .footer__col li { margin-bottom: calc(30 * var(--u)); }
+  .footer__col-title { margin-bottom: calc(18 * var(--u)); font-size: max(11px, calc(13 * var(--u))); }
+  .footer__contact { margin-bottom: calc(26 * var(--u)); }
+  .footer__bottom { margin-top: calc(56 * var(--u)); padding: calc(28 * var(--u)) 0 calc(76 * var(--u)); }
+
+  /* Крупные заголовки внутренних страниц */
+  .page-title { font-size: max(24px, calc(48 * var(--u))); margin: calc(10 * var(--u)) 0 calc(24 * var(--u)); }
+}
+
+/* ================= Телефоны: узкие экраны ================= */
+
+@media (max-width: 560px) {
+  .container { padding: 0 14px; }
+
+  .logo img { width: 118px; }
+  .header__inner { gap: 10px; min-height: 56px; }
+  .header__icons { gap: 12px; }
+  .header__icons .ico { width: 20px; height: 20px; }
+  .nav__list a { padding: 11px 12px; font-size: 13.5px; }
+  .topbar__inner { min-height: 30px; }
+  .topbar { font-size: 11.5px; }
+
+  .hero__title { font-size: 25px; }
+  .hero__subtitle { font-size: 14.5px; }
+  .hero__btn { padding: 12px 20px; font-size: 15px; }
+  .hero__media img { left: 46%; top: 14%; height: 108%; }
+
+  /* Плитки категорий: невысокие карточки в два ряда */
+  .cat-tiles { gap: 10px; }
+  .cat-tiles__col { grid-template-rows: 132px 132px; gap: 10px; }
+  .cat-tiles__row { gap: 10px; }
+  .cat-tile { padding: 14px; border-radius: 12px; }
+  .cat-tile--iphone { height: 180px; }
+  .cat-tile__name { font-size: 16px; }
+
+  .section { padding: 26px 0; }
+  .section__title { font-size: 20px; }
+  .section__head { margin-bottom: 16px; }
+
+  /* Карточка товара */
+  .p-card { padding: 12px 10px 16px; border-radius: 14px; }
+  .p-card__name { margin-top: 10px; font-size: 13px; min-height: 34px; }
+  .p-card__price { font-size: 19px; }
+  .p-card__price s { font-size: 12.5px; }
+  .p-card__installment { margin: 8px 0 10px; gap: 5px; font-size: 11.5px; }
+  .p-card__installment b { padding: 4px 7px; font-size: 11.5px; }
+  .p-card__btn { padding: 10px 8px; font-size: 13.5px; border-radius: 8px; }
+  .p-card__fav { top: 8px; right: 6px; width: 34px; height: 34px; }
+  .p-card__fav .ico { width: 16px; height: 16px; }
+  .p-card__compare { top: 48px; right: 6px; width: 34px; height: 34px; }
+  .p-card__compare .ico { width: 16px; height: 16px; }
+  .p-card__stock { font-size: 12px; }
+
+  /* Промо и SEO-блок */
+  .promo__title { font-size: 21px; }
+  .promo__text { font-size: 14px; }
+  .promo__actions { flex-wrap: wrap; gap: 10px; }
+  .about-block { padding: 34px 0 40px; }
+  .about-block__title { font-size: 20px; }
+  .about-block__text { font-size: 15px; margin-top: 16px; }
+  .advantages { gap: 12px; margin-top: 24px; }
+  .adv-card { min-height: 0; padding: 16px 14px; }
+  .adv-card__name { font-size: 15px; }
+  .adv-card__text { font-size: 12px; }
+
+  /* Крупные заголовки страниц */
+  .page-title { font-size: 23px; margin-bottom: 18px; }
+  .section-title { margin: 30px 0 16px; font-size: 21px; }
+  .btn { padding: 12px 20px; font-size: 15.5px; }
+
+  .footer { padding-top: 36px; }
+  .footer__bottom { padding-bottom: 40px; }
+}
+
+/* Совсем узкие телефоны */
+@media (max-width: 380px) {
+  .logo img { width: 104px; }
+  .header__icons { gap: 10px; }
+  .products, .listing__grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .p-card__price { font-size: 17.5px; }
 }
