@@ -1,0 +1,290 @@
+<!-- ================= Верхняя полоса ================= -->
+<div class="topbar">
+  <div class="container topbar__inner">
+    <button class="topbar__city" type="button" data-modal-open="city"><svg class="ico"><use href="#i-send"/></svg> <span data-city-name>Каспийск</span></button>
+    <div class="topbar__right">
+      <a class="topbar__item map-link" data-map="mahachkala" href="https://yandex.ru/maps/?text=Дагестан,%20Махачкала,%20улица%20Ярагского,%2065а/1" target="_blank" rel="noopener"><svg class="ico"><use href="#i-pin"/></svg> Махачкала, ул. Ярагского, 65а/1</a>
+      <a class="topbar__item map-link" data-map="kaspiysk" href="https://yandex.ru/maps/org/59448092318/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-pin"/></svg> Каспийск, ул. Ленина, 39</a>
+      <span class="topbar__item"><svg class="ico"><use href="#i-clock"/></svg> 09:00 – 23:00, ежедневно</span>
+      <a class="topbar__item" href="tel:+79188403711"><svg class="ico"><use href="#i-phone"/></svg> +7 (918) 840-37-11</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= Хедер ================= -->
+<header class="header">
+  <div class="container header__inner">
+    <button class="burger" type="button" aria-label="Меню" data-drawer-open><svg class="ico"><use href="#i-burger"/></svg></button>
+    <a class="logo" href="index.html">
+      <img src="img/logo-white.svg" alt="Комьюнити — эксперты по технике">
+    </a>
+    <form class="search" action="search.html" autocomplete="off">
+      <input type="text" name="q" placeholder="iPhone 16 Pro Max" data-search-input>
+      <button type="submit" aria-label="Найти"><svg class="ico"><use href="#i-search"/></svg></button>
+
+      <!-- Подсказки: показываются по фокусу в поле -->
+      <div class="search-drop" data-search-drop hidden>
+        <div class="search-drop__title">Популярные запросы</div>
+        <a class="search-drop__row" href="search.html"><svg class="ico"><use href="#i-search"/></svg> iPhone 16 Pro Max</a>
+        <a class="search-drop__row" href="search.html"><svg class="ico"><use href="#i-search"/></svg> MacBook Air M4</a>
+        <a class="search-drop__row" href="search.html"><svg class="ico"><use href="#i-search"/></svg> AirPods Pro 2</a>
+        <div class="search-drop__title">Товары</div>
+        <a class="search-drop__product" href="product.html">
+          <img src="img/p-16pm-desert.png" alt="">
+          <span>Apple iPhone 16 Pro Max 512 ГБ, песчаный титановый</span>
+          <b>149 990 ₽</b>
+        </a>
+        <a class="search-drop__product" href="product-iphone-16-128-biryuzovyy.html">
+          <img src="img/p-16-teal.png" alt="">
+          <span>Apple iPhone 16 128 ГБ, бирюзовый</span>
+          <b>79 990 ₽</b>
+        </a>
+        <a class="search-drop__product" href="product-macbook-air-13-m4-16-256-siyayuschaya-zvezda.html">
+          <img src="img/p-macbook-air.png" alt="">
+          <span>Apple MacBook Air 13" M4, 16 / 256 ГБ</span>
+          <b>119 990 ₽</b>
+        </a>
+        <a class="search-drop__all" href="search.html">Показать все результаты <svg class="ico"><use href="#i-arrow-r"/></svg></a>
+      </div>
+    </form>
+    <nav class="header__links">
+      <a href="delivery.html">Доставка и оплата</a>
+      <a href="about.html">О нас</a>
+    </nav>
+    <div class="header__icons">
+      <a href="account.html" aria-label="Личный кабинет" data-modal-open="login"><svg class="ico"><use href="#i-user"/></svg></a>
+      <a href="favorites.html" aria-label="Избранное"><svg class="ico"><use href="#i-heart"/></svg><i class="header__badge">2</i></a>
+      <a href="cart.html" aria-label="Корзина"><svg class="ico"><use href="#i-cart"/></svg><i class="header__badge">3</i></a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= Меню категорий ================= -->
+<nav class="nav">
+  <div class="container">
+    <ul class="nav__list">
+      <li class="nav__item"><a href="catalog-iphone.html">iPhone</a>
+        <div class="megamenu">
+          <div class="container megamenu__inner">
+            <div class="megamenu__col">
+              <div class="megamenu__title">По модели</div>
+              <ul>
+              <li><a href="catalog-iphone.html?f=model:16pm">iPhone 16 Pro Max</a></li>
+              <li><a href="catalog-iphone.html?f=model:16p">iPhone 16 Pro</a></li>
+              <li><a href="catalog-iphone.html?f=model:16">iPhone 16</a></li>
+              <li><a href="catalog-iphone.html?f=model:15">iPhone 15</a></li>
+              <li><a href="catalog-iphone.html?f=model:14">iPhone 14</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col">
+              <div class="megamenu__title">По памяти</div>
+              <ul>
+              <li><a href="catalog-iphone.html?f=memory:512">512 ГБ</a></li>
+              <li><a href="catalog-iphone.html?f=memory:256">256 ГБ</a></li>
+              <li><a href="catalog-iphone.html?f=memory:128">128 ГБ</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col">
+              <div class="megamenu__title">Выгодно</div>
+              <ul>
+              <li><a href="catalog-iphone.html?f=avail:stock">Со скидкой</a></li>
+              <li><a href="catalog-iphone.html?f=avail:stock">В наличии сегодня</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col megamenu__col--promo">
+              <div class="megamenu__title">Смотрите также</div>
+              <ul>
+                <li><a href="sale.html">Скидки и акции</a></li>
+                <li><a href="trade-in.html">Trade-In</a></li>
+                <li><a href="installment.html">Рассрочка 0-0-12</a></li>
+                <li><a href="catalog-iphone.html">Все товары раздела</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="nav__item"><a href="catalog-mac.html">Macbook</a>
+        <div class="megamenu">
+          <div class="container megamenu__inner">
+            <div class="megamenu__col">
+              <div class="megamenu__title">Линейка</div>
+              <ul>
+              <li><a href="catalog-mac.html?f=line:air">MacBook Air</a></li>
+              <li><a href="catalog-mac.html?f=line:pro">MacBook Pro</a></li>
+              <li><a href="catalog-mac.html?f=line:imac">iMac</a></li>
+              <li><a href="catalog-mac.html?f=line:mini">Mac mini</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col">
+              <div class="megamenu__title">Процессор</div>
+              <ul>
+              <li><a href="catalog-mac.html?f=chip:m4">M4</a></li>
+              <li><a href="catalog-mac.html?f=chip:m4pro">M4 Pro</a></li>
+              <li><a href="catalog-mac.html?f=chip:m3">M3</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col">
+              <div class="megamenu__title">Диагональ</div>
+              <ul>
+              <li><a href="catalog-mac.html?f=size:13">13"</a></li>
+              <li><a href="catalog-mac.html?f=size:14">14"</a></li>
+              <li><a href="catalog-mac.html?f=size:15">15"</a></li>
+              <li><a href="catalog-mac.html?f=size:16">16"</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col megamenu__col--promo">
+              <div class="megamenu__title">Смотрите также</div>
+              <ul>
+                <li><a href="sale.html">Скидки и акции</a></li>
+                <li><a href="trade-in.html">Trade-In</a></li>
+                <li><a href="installment.html">Рассрочка 0-0-12</a></li>
+                <li><a href="catalog-mac.html">Все товары раздела</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="nav__item"><a href="catalog-ipad.html">iPad</a>
+        <div class="megamenu">
+          <div class="container megamenu__inner">
+            <div class="megamenu__col">
+              <div class="megamenu__title">Линейка</div>
+              <ul>
+              <li><a href="catalog-ipad.html?f=line:pro">iPad Pro</a></li>
+              <li><a href="catalog-ipad.html?f=line:air">iPad Air</a></li>
+              <li><a href="catalog-ipad.html?f=line:ipad">iPad</a></li>
+              <li><a href="catalog-ipad.html?f=line:mini">iPad mini</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col">
+              <div class="megamenu__title">Связь</div>
+              <ul>
+              <li><a href="catalog-ipad.html?f=conn:wifi">Wi-Fi</a></li>
+              <li><a href="catalog-ipad.html?f=conn:cellular">Wi-Fi + Cellular</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col">
+              <div class="megamenu__title">Память</div>
+              <ul>
+              <li><a href="catalog-ipad.html?f=memory:512">512 ГБ</a></li>
+              <li><a href="catalog-ipad.html?f=memory:256">256 ГБ</a></li>
+              <li><a href="catalog-ipad.html?f=memory:128">128 ГБ</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col megamenu__col--promo">
+              <div class="megamenu__title">Смотрите также</div>
+              <ul>
+                <li><a href="sale.html">Скидки и акции</a></li>
+                <li><a href="trade-in.html">Trade-In</a></li>
+                <li><a href="installment.html">Рассрочка 0-0-12</a></li>
+                <li><a href="catalog-ipad.html">Все товары раздела</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="nav__item"><a href="catalog-airpods.html">Airpods</a>
+        <div class="megamenu">
+          <div class="container megamenu__inner">
+            <div class="megamenu__col">
+              <div class="megamenu__title">Модель</div>
+              <ul>
+              <li><a href="catalog-airpods.html?f=model:a4">AirPods 4</a></li>
+              <li><a href="catalog-airpods.html?f=model:pro">AirPods Pro 2</a></li>
+              <li><a href="catalog-airpods.html?f=model:max">AirPods Max</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col">
+              <div class="megamenu__title">Тип</div>
+              <ul>
+              <li><a href="catalog-airpods.html?f=type:in">Вкладыши</a></li>
+              <li><a href="catalog-airpods.html?f=type:over">Полноразмерные</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col megamenu__col--promo">
+              <div class="megamenu__title">Смотрите также</div>
+              <ul>
+                <li><a href="sale.html">Скидки и акции</a></li>
+                <li><a href="trade-in.html">Trade-In</a></li>
+                <li><a href="installment.html">Рассрочка 0-0-12</a></li>
+                <li><a href="catalog-airpods.html">Все товары раздела</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="nav__item"><a href="catalog-watch.html">Apple Watch</a>
+        <div class="megamenu">
+          <div class="container megamenu__inner">
+            <div class="megamenu__col">
+              <div class="megamenu__title">Серия</div>
+              <ul>
+              <li><a href="catalog-watch.html?f=series:s10">Series 10</a></li>
+              <li><a href="catalog-watch.html?f=series:se">SE</a></li>
+              <li><a href="catalog-watch.html?f=series:ultra">Ultra 2</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col">
+              <div class="megamenu__title">Корпус</div>
+              <ul>
+              <li><a href="catalog-watch.html?f=material:alu">Алюминий</a></li>
+              <li><a href="catalog-watch.html?f=material:titan">Титан</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col">
+              <div class="megamenu__title">Связь</div>
+              <ul>
+              <li><a href="catalog-watch.html?f=conn:gps">GPS</a></li>
+              <li><a href="catalog-watch.html?f=conn:cellular">GPS + Cellular</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col megamenu__col--promo">
+              <div class="megamenu__title">Смотрите также</div>
+              <ul>
+                <li><a href="sale.html">Скидки и акции</a></li>
+                <li><a href="trade-in.html">Trade-In</a></li>
+                <li><a href="installment.html">Рассрочка 0-0-12</a></li>
+                <li><a href="catalog-watch.html">Все товары раздела</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="nav__item"><a href="catalog-accessories.html">Аксессуары</a>
+        <div class="megamenu">
+          <div class="container megamenu__inner">
+            <div class="megamenu__col">
+              <div class="megamenu__title">Тип</div>
+              <ul>
+              <li><a href="catalog-accessories.html?f=type:case">Чехлы</a></li>
+              <li><a href="catalog-accessories.html?f=type:glass">Стёкла</a></li>
+              <li><a href="catalog-accessories.html?f=type:charger">Зарядки</a></li>
+              <li><a href="catalog-accessories.html?f=type:cable">Кабели</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col">
+              <div class="megamenu__title">Для устройства</div>
+              <ul>
+              <li><a href="catalog-accessories.html?f=compat:iphone">iPhone</a></li>
+              <li><a href="catalog-accessories.html?f=compat:ipad">iPad</a></li>
+              <li><a href="catalog-accessories.html?f=compat:mac">Mac</a></li>
+              <li><a href="catalog-accessories.html?f=compat:watch">Apple Watch</a></li>
+              </ul>
+            </div>
+            <div class="megamenu__col megamenu__col--promo">
+              <div class="megamenu__title">Смотрите также</div>
+              <ul>
+                <li><a href="sale.html">Скидки и акции</a></li>
+                <li><a href="trade-in.html">Trade-In</a></li>
+                <li><a href="installment.html">Рассрочка 0-0-12</a></li>
+                <li><a href="catalog-accessories.html">Все товары раздела</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li><a href="catalog-powerbanks.html">Павербанки</a></li>
+      <li><a href="catalog-docks.html">Док-станции</a></li>
+    </ul>
+  </div>
+</nav>

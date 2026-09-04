@@ -1,0 +1,108 @@
+<!-- ================= Мобильное меню ================= -->
+<div class="drawer" id="drawer" hidden>
+  <div class="drawer__overlay" data-drawer-close></div>
+  <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Меню">
+    <div class="drawer__head">
+      <a class="logo" href="index.html"><img src="img/logo-white.svg" alt="Комьюнити"></a>
+      <button class="drawer__close" type="button" aria-label="Закрыть" data-drawer-close><svg class="ico"><use href="#i-close"/></svg></button>
+    </div>
+    <form class="search search--drawer" action="search.html">
+      <input type="text" name="q" placeholder="Поиск по каталогу">
+      <button type="submit" aria-label="Найти"><svg class="ico"><use href="#i-search"/></svg></button>
+    </form>
+    <div class="drawer__title">Каталог</div>
+    <ul class="drawer__list">
+      <li><a href="catalog-iphone.html">iPhone <svg class="ico"><use href="#i-chev-r"/></svg></a></li>
+      <li><a href="catalog-mac.html">Macbook <svg class="ico"><use href="#i-chev-r"/></svg></a></li>
+      <li><a href="catalog-ipad.html">iPad <svg class="ico"><use href="#i-chev-r"/></svg></a></li>
+      <li><a href="catalog-airpods.html">AirPods <svg class="ico"><use href="#i-chev-r"/></svg></a></li>
+      <li><a href="catalog-watch.html">Apple Watch <svg class="ico"><use href="#i-chev-r"/></svg></a></li>
+      <li><a href="catalog-accessories.html">Аксессуары <svg class="ico"><use href="#i-chev-r"/></svg></a></li>
+      <li><a href="catalog-powerbanks.html">Павербанки <svg class="ico"><use href="#i-chev-r"/></svg></a></li>
+      <li><a href="catalog-docks.html">Док-станции <svg class="ico"><use href="#i-chev-r"/></svg></a></li>
+    </ul>
+    <div class="drawer__title">Покупателю</div>
+    <ul class="drawer__list drawer__list--plain">
+      <li><a href="favorites.html">Избранное</a></li>
+      <li><a href="cart.html">Корзина</a></li>
+      <li><a href="account.html">Личный кабинет</a></li>
+      <li><a href="delivery.html">Доставка и оплата</a></li>
+      <li><a href="trade-in.html">Trade-In</a></li>
+      <li><a href="installment.html">Рассрочка 0-0-12</a></li>
+      <li><a href="sale.html">Скидки и акции</a></li>
+      <li><a href="compare.html">Сравнение</a></li>
+      <li><a href="about.html">О нас</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+    </ul>
+    <div class="drawer__foot">
+      <a class="drawer__phone" href="tel:+79188403711"><svg class="ico"><use href="#i-phone"/></svg> +7 (918) 840-37-11</a>
+      <div class="drawer__note"><svg class="ico"><use href="#i-clock"/></svg> 09:00 – 23:00, ежедневно</div>
+      <a class="drawer__note map-link" data-map="kaspiysk" href="https://yandex.ru/maps/org/59448092318/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-pin"/></svg> Каспийск, ул. Ленина, 39</a>
+      <a class="drawer__note map-link" data-map="mahachkala" href="https://yandex.ru/maps/?text=Дагестан,%20Махачкала,%20улица%20Ярагского,%2065а/1" target="_blank" rel="noopener"><svg class="ico"><use href="#i-pin"/></svg> Махачкала, ул. Ярагского, 65а/1</a>
+    </div>
+  </aside>
+</div>
+
+<!-- ================= Модал входа ================= -->
+<div class="modal" id="modal-login" hidden>
+  <div class="modal__overlay" data-modal-close></div>
+  <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="modal-login-title">
+    <button class="modal__close" type="button" aria-label="Закрыть" data-modal-close><svg class="ico"><use href="#i-close"/></svg></button>
+
+    <div class="modal__step" data-step="phone">
+      <h2 class="modal__title" id="modal-login-title">Вход в личный кабинет</h2>
+      <p class="modal__text">Введите номер телефона — пришлём код подтверждения в SMS</p>
+      <label class="field">
+        <span class="field__label">Телефон</span>
+        <input type="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" value="+7 (918) 840-37-11">
+      </label>
+      <button class="btn btn--primary btn--block" type="button" data-login-next>Получить код</button>
+      <p class="modal__note">Нажимая кнопку, вы соглашаетесь с <a href="privacy.html">политикой конфиденциальности</a> и <a href="offer.html">условиями оферты</a></p>
+    </div>
+
+    <div class="modal__step" data-step="code" hidden>
+      <h2 class="modal__title">Введите код из SMS</h2>
+      <p class="modal__text">Отправили сообщение на +7 (918) 840-37-11 · <button class="link" type="button" data-login-back>изменить</button></p>
+      <div class="code-input">
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Цифра 1">
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Цифра 2">
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Цифра 3">
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Цифра 4">
+      </div>
+      <a class="btn btn--primary btn--block" href="account.html">Войти</a>
+      <p class="modal__note">Запросить код повторно можно через <b data-login-timer>00:59</b></p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================= Выбор города ================= -->
+<div class="modal" id="modal-city" hidden>
+  <div class="modal__overlay" data-modal-close></div>
+  <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="modal-city-title">
+    <button class="modal__close" type="button" aria-label="Закрыть" data-modal-close><svg class="ico"><use href="#i-close"/></svg></button>
+    <h2 class="modal__title" id="modal-city-title">Ваш город</h2>
+    <p class="modal__text">От города зависят сроки доставки, наличие в магазине и способы оплаты</p>
+    <div class="city-list">
+      <button class="city-option is-active" type="button" data-city="Каспийск">
+        <span class="city-option__name">Каспийск</span>
+        <span class="city-option__text">ул. Ленина, 39 · самовывоз сегодня</span>
+      </button>
+      <button class="city-option" type="button" data-city="Махачкала">
+        <span class="city-option__name">Махачкала</span>
+        <span class="city-option__text">ул. Ярагского, 65а/1 · самовывоз сегодня</span>
+      </button>
+      <button class="city-option" type="button" data-city="Другой город">
+        <span class="city-option__name">Другой город</span>
+        <span class="city-option__text">Доставка СДЭК по России, 2–5 дней</span>
+      </button>
+    </div>
+    <p class="modal__note">Город можно поменять в любой момент в верхней строке сайта</p>
+  </div>
+</div>
+
+
+<!-- ================= Кнопка «наверх» ================= -->
+<button class="to-top" type="button" aria-label="Наверх" data-to-top hidden>
+  <svg class="ico"><use href="#i-chev-d"/></svg>
+</button>
