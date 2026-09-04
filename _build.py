@@ -11,6 +11,7 @@
     python3 _build.py
 """
 
+import hashlib
 import pathlib
 import re
 import sys
@@ -29,6 +30,27 @@ def load_parts():
     return parts
 
 
+def asset_versions():
+    """К ссылкам на стили и скрипты добавляем версию-хеш.
+
+    Без этого браузер держит старый CSS из кеша и правки «не видны»,
+    пока пользователь не нажмёт Cmd+Shift+R. С хешем адрес файла меняется
+    при каждой правке, и обновление подхватывается само.
+    """
+    versions = {}
+    for path in sorted(ROOT.glob('css/*.css')) + sorted(ROOT.glob('js/*.js')):
+        digest = hashlib.md5(path.read_bytes()).hexdigest()[:8]
+        versions[f'{path.parent.name}/{path.name}'] = digest
+    return versions
+
+
+def stamp_assets(text, versions):
+    for name, digest in versions.items():
+        text = re.sub(rf'(["\'])({re.escape(name)})(\?v=[0-9a-f]+)?\1',
+                      lambda m: f'{m.group(1)}{name}?v={digest}{m.group(1)}', text)
+    return text
+
+
 def sync(text, parts):
     changed = 0
     for name, body in parts.items():
@@ -44,11 +66,13 @@ def sync(text, parts):
 
 def main():
     parts = load_parts()
+    versions = asset_versions()
     pages = sorted(p for p in ROOT.glob("*.html") if not p.name.startswith("_"))
     for page in pages:
         src = page.read_text(encoding="utf-8")
         out, n = sync(src, parts)
-        if n == 0:
+        out = stamp_assets(out, versions)
+        if n == 0 and out == src:
             print(f"  {page.name}: маркеров нет — пропуск")
             continue
         if out != src:
