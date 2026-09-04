@@ -55,18 +55,18 @@
         if (!allowOnsite && !note) {
           note = document.createElement('span');
           note.className = 'radio-card__note';
-          note.textContent = 'Недоступно для доставки по России — оплата только онлайн';
+          note.textContent = 'Для доставки по России оплата принимается по счёту до отправки';
           card.querySelector('.radio-card__body').appendChild(note);
         } else if (allowOnsite && note) {
           note.remove();
         }
-        // если способ был выбран, а стал недоступен — переключаем на онлайн
+        // если способ был выбран, а стал недоступен — переключаем на оплату по счёту
         if (!allowOnsite && card.classList.contains('is-active')) {
           card.classList.remove('is-active');
-          var online = payList.querySelector('[data-extra="online"]');
-          if (online) {
-            online.classList.add('is-active');
-            var radio = online.querySelector('input');
+          var fallback = payList.querySelector('[data-extra="invoice"]');
+          if (fallback) {
+            fallback.classList.add('is-active');
+            var radio = fallback.querySelector('input');
             if (radio) radio.checked = true;
           }
         }

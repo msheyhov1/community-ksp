@@ -435,7 +435,7 @@
               <input type="radio" name="delivery">
               <span class="radio-card__body">
                 <span class="radio-card__title">Доставка по России, СДЭК</span>
-                <span class="radio-card__text">2–5 дней, до пункта выдачи или до двери. Оплата только онлайн</span>
+                <span class="radio-card__text">2–5 дней, до пункта выдачи или до двери. Оплата по счёту до отправки</span>
               </span>
               <span class="radio-card__price">от 490 ₽</span>
             </label>
@@ -520,18 +520,11 @@
         <section class="co-block">
           <h2 class="co-block__title"><svg class="ico"><use href="#i-card"/></svg> Оплата</h2>
           <div class="radio-list" data-group="pay">
-            <label class="radio-card is-active" data-extra="online">
+            <label class="radio-card is-active" data-extra="onsite" data-needs-onsite="1">
               <input type="radio" name="pay" checked>
               <span class="radio-card__body">
-                <span class="radio-card__title">Картой онлайн</span>
-                <span class="radio-card__text">Mir, Visa, Mastercard, СБП. Оплата после подтверждения заказа</span>
-              </span>
-            </label>
-            <label class="radio-card" data-extra="onsite" data-needs-onsite="1">
-              <input type="radio" name="pay">
-              <span class="radio-card__body">
                 <span class="radio-card__title">Картой или наличными при получении</span>
-                <span class="radio-card__text">Доступно для самовывоза и курьера по Дагестану</span>
+                <span class="radio-card__text">В магазине или курьеру по Дагестану. Чек выдаём сразу</span>
               </span>
             </label>
             <label class="radio-card" data-extra="installment">
@@ -541,6 +534,13 @@
                 <span class="radio-card__text">Без первого взноса и переплаты, решение банка за 2 минуты</span>
               </span>
               <span class="radio-card__price">27 830 ₽ / мес</span>
+            </label>
+            <label class="radio-card" data-extra="invoice">
+              <input type="radio" name="pay">
+              <span class="radio-card__body">
+                <span class="radio-card__title">Перевод по счёту</span>
+                <span class="radio-card__text">Пришлём счёт на оплату — подходит для доставки по России</span>
+              </span>
             </label>
             <label class="radio-card" data-extra="company">
               <input type="radio" name="pay">
@@ -811,6 +811,6 @@
 <!--/@part:modals-->
 
 <script src="js/main.js?v=3e2d37bc"></script>
-<script src="js/checkout.js?v=5b2696d5"></script>
+<script src="js/checkout.js?v=a9de6e4d"></script>
 </body>
 </html>
