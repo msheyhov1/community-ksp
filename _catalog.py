@@ -425,6 +425,23 @@ def money(v):
 HAND_MADE = {'iphone-16-pro-max-512-peschanyy-titanovyy': 'product.html'}
 
 
+
+def sku(prod):
+    """Артикул товара.
+
+    Раньше брали первые 14 символов slug — у модификаций одной линейки
+    получался один и тот же код (все iPhone 16 Pro Max = IPHONE-16-PRO-).
+    Теперь код короткий, читаемый и уникальный: буквы из названия плюс
+    хвост хеша. При натяжке на Битрикс здесь будет настоящий артикул из 1С.
+    """
+    import hashlib
+    import re as _re
+    words = _re.sub(r'[^a-z0-9 ]', ' ', prod['slug'].replace('-', ' ')).split()
+    head = ''.join(w[0] for w in words[:4] if not w[0].isdigit()).upper()
+    nums = '-'.join(w for w in words if w.isdigit())[:8]
+    tail = hashlib.md5(prod['slug'].encode()).hexdigest()[:4].upper()
+    return '-'.join(x for x in ('CK', head, nums, tail) if x)
+
 def page_name(prod):
     return HAND_MADE.get(prod['slug'], f"product-{prod['slug']}.html")
 

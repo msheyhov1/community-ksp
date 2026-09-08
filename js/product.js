@@ -71,7 +71,8 @@
       var colorCode = { 'песчаный титановый': 'DT', 'натуральный титановый': 'NT',
                         'чёрный титановый': 'BT', 'белый титановый': 'WT' }[color.dataset.color] || 'XX';
       var sizeCode = { '1 ТБ': '1024', '512 ГБ': '512', '256 ГБ': '256', '128 ГБ': '128' }[memory.dataset.memory] || '';
-      skuOut.textContent = '16PM-' + sizeCode + '-' + colorCode;
+      // формат тот же, что у остальных карточек (см. sku() в _catalog.py)
+      skuOut.textContent = 'CK-IPM-16-' + sizeCode + '-' + colorCode;
     }
 
     document.title = 'Apple iPhone 16 Pro Max ' + name + ' — купить | Комьюнити';

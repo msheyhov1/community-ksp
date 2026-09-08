@@ -201,7 +201,7 @@ def page(prod, cat):
 
     <div class="product-head">
 {head_rating}
-      <span class="product-head__code">Артикул: {prod['slug'][:14].upper()}</span>
+      <span class="product-head__code">Артикул: {C.sku(prod)}</span>
     </div>
 
     <div class="product{single}">

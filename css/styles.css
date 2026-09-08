@@ -1404,6 +1404,16 @@ body.is-locked { overflow: hidden; }
 .calc__row b { color: #fff; font-weight: 500; }
 .calc__divider { margin: 22px 0; border-top: 1px solid rgba(255,255,255,.12); }
 .calc__result .btn { margin-top: 8px; }
+.calc__result .btn--outline {
+  color: #fff;
+  border-color: rgba(255, 255, 255, .28);
+}
+.calc__result .btn--outline:hover {
+  border-color: rgba(255, 255, 255, .55);
+  background: rgba(255, 255, 255, .06);
+}
+.calc__result .modal__note { color: #8a8a8f; }
+.calc__result .modal__note a { color: #cfa578; }
 .calc__note { margin-top: 14px; font-size: 12.5px; color: #8a8a8f; line-height: 1.5; }
 
 /* Переключатели-таблетки (срок рассрочки, состояние устройства) */
