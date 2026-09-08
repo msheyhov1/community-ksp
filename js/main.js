@@ -313,26 +313,45 @@ function money(value) {
 }
 
 // ================= Калькулятор рассрочки =================
+// Наценка партнёра берётся из data-markup на форме (в процентах).
+// Пока заказчик не прислал условия Ляриба/Хайр — там 0, и вместо цифры
+// показывается «по договору», чтобы не выдумывать сумму.
 (function () {
   var form = document.getElementById('calc-installment');
   if (!form) return;
   var sum = form.querySelector('[data-calc-sum]');
   var sumOut = form.querySelector('[data-calc-sum-out]');
+  var down = form.querySelector('[data-calc-down]');
+  var downOut = form.querySelector('[data-calc-down-out]');
   var months = form.querySelector('[data-calc-months]');
   var monthly = document.querySelector('[data-calc-monthly]');
   var total = document.querySelector('[data-calc-total]');
   var term = document.querySelector('[data-calc-term]');
+  var downSum = document.querySelector('[data-calc-down-sum]');
+  var downNote = document.querySelector('[data-calc-down-note]');
+  var markupOut = document.querySelector('[data-calc-markup]');
+  var markup = parseFloat(form.dataset.markup || '0') || 0;
 
   function recalc() {
     var value = parseInt(sum.value, 10) || 0;
+    var pct = down ? (parseInt(down.value, 10) || 0) : 0;
     var m = parseInt(months.querySelector('.pill.is-active').dataset.months, 10);
+    var totalSum = Math.round(value * (1 + markup / 100));
+    var downPay = Math.round(totalSum * pct / 100);
+    var rest = totalSum - downPay;
+
     sumOut.textContent = money(value);
-    monthly.textContent = money(value / m);
-    total.textContent = money(value);
+    if (downOut) downOut.textContent = pct ? money(downPay) + ' · ' + pct + '%' : '0 ₽';
+    monthly.textContent = money(rest / m);
+    total.textContent = money(totalSum);
     term.textContent = m + ' мес.';
+    if (downSum) downSum.textContent = money(downPay);
+    if (downNote) downNote.textContent = pct ? 'после первого взноса' : 'без первого взноса';
+    if (markupOut) markupOut.textContent = markup ? money(totalSum - value) : 'по договору';
   }
 
   sum.addEventListener('input', recalc);
+  if (down) down.addEventListener('input', recalc);
   months.addEventListener('change', recalc);
   recalc();
 })();
