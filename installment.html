@@ -381,14 +381,17 @@
 
     <h1 class="page-title">Рассрочка без процентов</h1>
 
-    <!-- ЖДЁМ ОТ ЗАКАЗЧИКА: точные условия Ляриба-Финанс и Хайр — максимальная сумма,
-         сроки, размер первого взноса, наценка, список документов. Цифры ниже помечены
-         как предварительные, наценка в калькуляторе задаётся атрибутом data-markup. -->
+    <!-- Условия Ляриба-Финанс взяты с их калькулятора на lariba.ru (08.09.2026):
+         наценка 3,8% в месяц от финансируемой суммы, срок до 12 месяцев,
+         первый взнос от 25% для покупок примерно от 50 000 ₽, максимум 1 000 000 ₽.
+         ЖДЁМ ОТ ЗАКАЗЧИКА: подтверждение, что для «Комьюнити» действуют те же цифры
+         (у магазина может быть своя договорённость с партнёром), и условия Хайр —
+         их сайт найти не удалось. Ставка меняется в data-markup-month у формы. -->
 
     <div class="prose">
       <p>Рассрочку оформляем через партнёров — <b>Ляриба-Финанс</b> и <b>Хайр</b>. Это финансирование
         по нормам ислама: никаких процентов и ссудных начислений. Партнёр выкупает технику и продаёт
-        её вам в рассрочку по цене, которая фиксируется в договоре и больше не меняется.</p>
+        её вам в рассрочку по цене, которая фиксируется в договоре и больше не меняется. Наценку партнёра видно в калькуляторе ниже — она известна до подписания.</p>
       <p>Заявку можно оставить на сайте: при оформлении заказа выберите способ оплаты «Рассрочка».
         Мы передадим её партнёру, а наш бухгалтер выставит счёт — оплачивать онлайн ничего не нужно.</p>
     </div>
@@ -416,7 +419,7 @@
 
     <h2 class="section-title">Рассчитать платёж</h2>
     <div class="calc">
-      <form class="calc__form" id="calc-installment" action="#" data-markup="0">
+      <form class="calc__form" id="calc-installment" action="#" data-markup-month="3.8">
         <div class="field">
           <span class="field__label">Стоимость покупки</span>
           <input class="range" type="range" min="10000" max="400000" step="1000" value="150000" data-calc-sum>
@@ -425,8 +428,8 @@
 
         <div class="field" style="margin-top:22px">
           <span class="field__label">Первый взнос</span>
-          <input class="range" type="range" min="0" max="50" step="5" value="0" data-calc-down>
-          <div class="range-marks"><span>0%</span> <b data-calc-down-out>0 ₽</b> <span>50%</span></div>
+          <input class="range" type="range" min="0" max="50" step="5" value="25" data-calc-down>
+          <div class="range-marks"><span>0%</span> <b data-calc-down-out>37 500 ₽ · 25%</b> <span>50%</span></div>
         </div>
 
         <div class="field" style="margin-top:22px">
@@ -434,6 +437,7 @@
           <div class="pills" data-calc-months>
             <button class="pill" type="button" data-months="3">3 месяца</button>
             <button class="pill" type="button" data-months="6">6 месяцев</button>
+            <button class="pill" type="button" data-months="9">9 месяцев</button>
             <button class="pill is-active" type="button" data-months="12">12 месяцев</button>
           </div>
         </div>
@@ -461,12 +465,12 @@
 
       <aside class="calc__result">
         <div class="calc__label">Платёж в месяц</div>
-        <div class="calc__value"><span data-calc-monthly>12 500 ₽</span><small data-calc-down-note>без первого взноса</small></div>
+        <div class="calc__value"><span data-calc-monthly>13 650 ₽</span><small data-calc-down-note>после первого взноса</small></div>
         <div class="calc__divider"></div>
         <div class="calc__row"><span>Срок</span> <b data-calc-term>12 мес.</b></div>
-        <div class="calc__row"><span>Первый взнос</span> <b data-calc-down-sum>0 ₽</b></div>
-        <div class="calc__row"><span>Наценка партнёра</span> <b data-calc-markup>по договору</b></div>
-        <div class="calc__row"><span>Всего к оплате</span> <b data-calc-total>150 000 ₽</b></div>
+        <div class="calc__row"><span>Первый взнос</span> <b data-calc-down-sum>37 500 ₽</b></div>
+        <div class="calc__row"><span>Наценка партнёра</span> <b data-calc-markup>51 300 ₽</b></div>
+        <div class="calc__row"><span>Всего к оплате</span> <b data-calc-total>201 300 ₽</b></div>
         <button class="btn btn--primary btn--block" type="button" data-toast="Заявка отправлена — перезвоним и передадим её партнёру">Оставить заявку</button>
         <a class="btn btn--outline btn--block" href="catalog.html" style="margin-top:10px">Выбрать технику</a>
         <div class="calc__note">Расчёт предварительный: показывает, как делится сумма по месяцам.
@@ -513,10 +517,11 @@
       <article class="list-card">
         <div class="list-card__title"><svg class="ico" style="color:var(--c-bronze)"><use href="#i-doc"/></svg> Условия</div>
         <ul>
-          <li>Срок — от 3 до 12 месяцев</li>
-          <li>Первый взнос — по решению партнёра, возможен нулевой</li>
-          <li>Сумма договора фиксируется и не пересчитывается</li>
-          <li>Досрочное погашение — без штрафов</li>
+          <li>Срок — 3, 6, 9 или 12 месяцев</li>
+          <li>Первый взнос — от 25% для покупок примерно от 50 000 ₽</li>
+          <li>Сумма покупки — до 1 000 000 ₽</li>
+          <li>Наценка — 3,8% в месяц от суммы, которую вносит партнёр</li>
+          <li>Без пени и штрафов, сумма договора не пересчитывается</li>
         </ul>
       </article>
     </div>
@@ -526,8 +531,8 @@
       <article class="info-card">
         <svg class="ico"><use href="#i-mosque"/></svg>
         <div class="info-card__title">Ляриба-Финанс</div>
-        <div class="info-card__text">Финансирование покупок по нормам ислама. Работает в Дагестане,
-          оформление по паспорту.</div>
+        <div class="info-card__text">Финансирует смартфоны, технику и мебель по нормам ислама.
+          Махачкала, Дербент, Хасавюрт и другие города Дагестана.</div>
         <div class="info-card__price">до 12 мес.</div>
       </article>
       <article class="info-card">
@@ -553,6 +558,14 @@
         <div class="faq__a">Здесь нет процентов и нет займа. Партнёр выкупает технику и продаёт её вам
           дороже, но с рассрочкой платежа: цена договора известна заранее и потом не меняется —
           независимо от того, сколько вы платите по времени.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button">Значит, переплата всё-таки есть? <svg class="ico"><use href="#i-chev-d"/></svg></button>
+        <div class="faq__a" hidden>Да, но это не проценты, а торговая наценка: партнёр покупает
+          товар и продаёт его вам дороже. Её размер известен до подписания и потом не растёт —
+          ни от срока фактических выплат, ни от просрочки. У Ляриба-Финанс это 3,8% в месяц
+          от суммы, которую вносит партнёр: например, при покупке за 150 000 ₽ с первым взносом
+          37 500 ₽ и сроком 12 месяцев наценка составит 51 300 ₽.</div>
       </div>
       <div class="faq__item">
         <button class="faq__q" type="button">Можно ли погасить досрочно? <svg class="ico"><use href="#i-chev-d"/></svg></button>
@@ -793,6 +806,6 @@
 </button>
 <!--/@part:modals-->
 
-<script src="js/main.js?v=cbd5c967"></script>
+<script src="js/main.js?v=6952e165"></script>
 </body>
 </html>

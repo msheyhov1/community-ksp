@@ -313,9 +313,13 @@ function money(value) {
 }
 
 // ================= Калькулятор рассрочки =================
-// Наценка партнёра берётся из data-markup на форме (в процентах).
-// Пока заказчик не прислал условия Ляриба/Хайр — там 0, и вместо цифры
-// показывается «по договору», чтобы не выдумывать сумму.
+// Схема Ляриба-Финанс (снято с их калькулятора на lariba.ru 08.09.2026):
+//   финансируемая сумма = цена − первый взнос
+//   наценка            = финансируемая сумма × ставку в месяц × срок
+//   итого              = цена + наценка
+//   платёж             = (итого − первый взнос) ÷ срок
+// Ставка задаётся атрибутом data-markup-month на форме. Если её нет или она
+// нулевая — переплата не считается и выводится «по договору».
 (function () {
   var form = document.getElementById('calc-installment');
   if (!form) return;
@@ -330,24 +334,26 @@ function money(value) {
   var downSum = document.querySelector('[data-calc-down-sum]');
   var downNote = document.querySelector('[data-calc-down-note]');
   var markupOut = document.querySelector('[data-calc-markup]');
-  var markup = parseFloat(form.dataset.markup || '0') || 0;
+  var rate = parseFloat(form.dataset.markupMonth || '0') || 0;
 
   function recalc() {
-    var value = parseInt(sum.value, 10) || 0;
+    var price = parseInt(sum.value, 10) || 0;
     var pct = down ? (parseInt(down.value, 10) || 0) : 0;
     var m = parseInt(months.querySelector('.pill.is-active').dataset.months, 10);
-    var totalSum = Math.round(value * (1 + markup / 100));
-    var downPay = Math.round(totalSum * pct / 100);
+    var downPay = Math.round(price * pct / 100);
+    var financed = price - downPay;
+    var markup = Math.round(financed * rate / 100 * m);
+    var totalSum = price + markup;
     var rest = totalSum - downPay;
 
-    sumOut.textContent = money(value);
+    sumOut.textContent = money(price);
     if (downOut) downOut.textContent = pct ? money(downPay) + ' · ' + pct + '%' : '0 ₽';
     monthly.textContent = money(rest / m);
     total.textContent = money(totalSum);
     term.textContent = m + ' мес.';
     if (downSum) downSum.textContent = money(downPay);
     if (downNote) downNote.textContent = pct ? 'после первого взноса' : 'без первого взноса';
-    if (markupOut) markupOut.textContent = markup ? money(totalSum - value) : 'по договору';
+    if (markupOut) markupOut.textContent = rate ? money(markup) : 'по договору';
   }
 
   sum.addEventListener('input', recalc);
